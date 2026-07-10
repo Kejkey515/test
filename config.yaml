@@ -1,0 +1,91 @@
+# ============================================================
+# BeEF Configuration — Render-Ready
+# ============================================================
+# Credentials are overridden by environment variables at runtime.
+# Generate bcrypt hash: htpasswd -bnBC 10 "" 'YourPassword' | tr -d ':\n'
+# ============================================================
+
+beef:
+    version: '0.6.0.0'
+    debug: false
+    client_debug: false
+    crypto_default_value_length: 80
+
+    credentials:
+        user: "redteam"
+        passwd: "CHANGE_ME_BEEF_PASSWORD"
+
+    restrictions:
+        permitted_hooking_subnet: ["0.0.0.0/0", "::/0"]
+        permitted_ui_subnet: ["0.0.0.0/0", "::/0"]
+        excluded_hooking_subnet: []
+        api_attempt_delay: "0.05"
+
+    http:
+        debug: false
+        host: "0.0.0.0"
+        port: "3000"
+        public:
+            host: "beef-harness.onrender.com"
+            port: "443"
+            https: true
+        xhr_poll_timeout: 1000
+
+        allow_reverse_proxy: true
+
+        hook_file: "/hook.js"
+        hook_session_name: "BEEFHOOK"
+
+        restful_api:
+            allow_cors: false
+            cors_allowed_domains: "http://browserhacker.com"
+
+        websocket:
+            enable: false
+            port: 61985
+            secure: true
+            secure_port: 61986
+            ws_poll_timeout: 5000
+            ws_connect_timeout: 500
+
+        web_server_imitation:
+            enable: true
+            type: "apache"
+            hook_404: false
+            hook_root: false
+
+        https:
+            enable: false
+            key: "beef_key.pem"
+            cert: "beef_cert.pem"
+
+    database:
+        file: "beef.db"
+
+    dns_hostname_lookup: false
+
+    geoip:
+        enable: false
+
+    extension:
+        admin_ui:
+            enable: true
+            base_path: "/ui"
+        demos:
+            enable: true
+        events:
+            enable: true
+        evasion:
+            enable: false
+        requester:
+            enable: true
+        proxy:
+            enable: true
+        network:
+            enable: true
+        metasploit:
+            enable: false
+        social_engineering:
+            enable: false
+        xssrays:
+            enable: false

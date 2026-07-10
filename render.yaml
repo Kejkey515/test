@@ -1,0 +1,21 @@
+resources:
+  - type: web
+    name: beef-render
+    runtime: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: RACK_ENV
+        value: production
+      - key: BEEF_CREDENTIALS_USER
+        sync: false
+      - key: BEEF_CREDENTIALS_PASS
+        sync: false
+      - key: BEEF_PASSWORD
+        sync: false
+    disk:
+      name: beef-data
+      mountPath: /beef/data
+      sizeGB: 1

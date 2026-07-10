@@ -1,0 +1,15 @@
+.git
+.gitignore
+.dockerignore
+LICENSE
+PLAN.md
+README.md
+render.yaml
+docker-compose.yml
+test/
+spec/
+docs/
+tmp/
+log/
+*.log
+.DS_Store
